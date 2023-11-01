@@ -6,6 +6,10 @@ import dayjs from 'dayjs'
 export class InMemoryCheckInRepository implements CheckinRepository {
   public items: CheckIn[] = []
 
+  async countByUserId(userId: string) {
+    return this.items.filter((item) => item.user_id === userId).length
+  }
+
   async findUserByIdOnData(userId: string, date: Date) {
     const startOfTheDay = dayjs(date).startOf('date')
     const endOfTheDAy = dayjs(date).endOf('date')
@@ -22,6 +26,12 @@ export class InMemoryCheckInRepository implements CheckinRepository {
     }
 
     return checkInOnSameDate
+  }
+
+  async findManyByUserId(userId: string, page: number) {
+    return this.items
+      .filter((item) => item.user_id === userId)
+      .slice((page - 1) * 20, page * 20)
   }
 
   async create(data: Prisma.CheckInUncheckedCreateInput) {

@@ -11,7 +11,7 @@ describe('Search Gym Use Case', () => {
     sut = new SearchGymUse(gymRepository)
   })
 
-  it('should be able to fetch check-in history', async () => {
+  it('should be able to search gyms', async () => {
     await gymRepository.create({
       title: 'JavaScript Gym',
       description: null,
@@ -35,7 +35,7 @@ describe('Search Gym Use Case', () => {
     expect(gyms).toHaveLength(1)
   })
 
-  it('should be able to fetch paginated check-in history', async () => {
+  it('should be able to search paginated gyms', async () => {
     for (let i = 1; i <= 22; i++) {
       await gymRepository.create({
         title: `JavaScript Gym ${i}`,

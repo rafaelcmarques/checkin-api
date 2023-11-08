@@ -10,7 +10,7 @@ interface SearchGymUseResponse {
   gyms: Gym[]
 }
 
-export class SearchGymUse {
+export class SearchGymUseCase {
   constructor(private gymRepository: GymsRepository) {}
 
   async execute({

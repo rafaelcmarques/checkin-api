@@ -1,14 +1,14 @@
 import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
-import { SearchGymUse } from './search-gyms'
+import { SearchGymUseCase } from './search-gyms'
 
 let gymRepository: InMemoryGymsRepository
-let sut: SearchGymUse
+let sut: SearchGymUseCase
 
 describe('Search Gym Use Case', () => {
   beforeEach(async () => {
     gymRepository = new InMemoryGymsRepository()
-    sut = new SearchGymUse(gymRepository)
+    sut = new SearchGymUseCase(gymRepository)
   })
 
   it('should be able to search gyms', async () => {

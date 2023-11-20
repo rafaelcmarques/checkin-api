@@ -8,7 +8,7 @@ export async function search(request: FastifyRequest, replay: FastifyReply) {
     page: z.coerce.number().min(1).default(1),
   })
 
-  const { q, page } = registerBodySchema.parse(request.body)
+  const { q, page } = registerBodySchema.parse(request.query)
 
   const createGymUSeCase = makeSearchGymUseCase()
 
@@ -17,7 +17,7 @@ export async function search(request: FastifyRequest, replay: FastifyReply) {
     page,
   })
 
-  return replay.status(201).send({
+  return replay.status(200).send({
     gyms,
   })
 }
